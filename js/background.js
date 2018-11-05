@@ -15,22 +15,22 @@ chrome.contextMenus.create({
 
 function addBookmark(url) 
 {
-    $.ajax({
-        url: 'https://bookmark.hxhsoft.cn/bookmarks',
-        type: 'POST',
-        data: {url: url},
-        headers: {'X-Requested-With': 'XMLHttpRequest'},
-        dataType: 'json',
-        success: function (response) {
-        	chrome.notifications.create(null, {
+	$.ajax({
+		url: 'https://bookmark.hxhsoft.cn/bookmarks',
+		type: 'POST',
+		data: {url: url},
+		headers: {'X-Requested-With': 'XMLHttpRequest'},
+		dataType: 'json',
+		success: function (response) {
+			chrome.notifications.create(null, {
 				type: 'basic',
 				iconUrl: 'img/success.png',
 				title: '收藏成功！',
 				message: response.message
 			});
-        },
-        error: function (response) {
-            chrome.notifications.create(null, {
+		},
+		error: function (response) {
+			chrome.notifications.create(null, {
 				type: 'basic',
 				iconUrl: 'img/fail.png',
 				title: '收藏失败！',
@@ -38,6 +38,6 @@ function addBookmark(url)
 			});
 
 			chrome.tabs.create({url: 'https://bookmark.hxhsoft.cn'});
-        }
-    });
+		}
+	});
 }
